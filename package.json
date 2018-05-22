@@ -1,0 +1,62 @@
+{
+  "name": "react-boilerplate",
+  "version": "1.0.0",
+  "description": "My very own react boilerplate project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcabarreto/react-boilerplate.git"
+  },
+  "author": "Rodrigo Barreto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rcabarreto/react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/rcabarreto/react-boilerplate#readme",
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "^3.1.0",
+    "express": "~4.16.0",
+    "hbs": "~4.0.1",
+    "helmet": "^3.12.1",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "node-env-file": "^0.1.8",
+    "node-sass-middleware": "0.11.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "underscore": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "bootstrap": "^4.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^4.2.0",
+    "jest": "^22.4.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "react-test-renderer": "^16.3.2",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  }
+}
