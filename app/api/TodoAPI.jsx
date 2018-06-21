@@ -1,6 +1,31 @@
-var $ = require('jquery');
+import axios from 'axios'
 
 module.exports = {
+
+  registerUser: function (registerForm) {
+    return new Promise((resolve, reject) => {
+
+      axios.post('/user', registerForm).then(response => {
+        resolve(response.data);
+      }).catch(error => {
+        reject(error);
+      });
+
+    });
+  },
+
+  doLogin: function (registerForm) {
+
+    console.log(JSON.stringify(registerForm));
+
+    return {
+      id: 1,
+      token: '2u3hmtu34htn2u4nv2u34nut2h34iutnh2',
+      name: 'Rodrigo Barreto',
+      email: 'rcabarreto@gmail.com'
+    }
+  },
+
   filterTodos: function (todos, showCompleted, searchText) {
     var filteredTodos = todos;
 

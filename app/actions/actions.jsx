@@ -1,28 +1,88 @@
 import moment from 'moment';
 
-import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 
-export var setSearchText = (searchText) => {
+export const loginRequest = ({ email, password }) => {
+  return {
+    type: 'LOGIN_REQUEST',
+    email,
+    password
+  }
+};
+
+export const loginSuccess = (user) => {
+  return {
+    type: 'LOAD_USER',
+    user: {
+      ...user
+    }
+  };
+};
+
+export const signupRequest = (user) => {
+  return {
+    type: 'SIGNUP_REQUEST',
+    user: {
+      ...user
+    }
+  };
+};
+
+export const logoutRequest = () => {
+  return {
+    type: 'LOGOUT_REQUEST'
+  };
+};
+
+
+
+
+
+export const startLogin = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
+      console.log('Auth worked!', result);
+    }, (error) => {
+      console.log('Unable to auth', error);
+    });
+  };
+};
+
+export const logout = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
+
+export const startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut().then(() => {
+      console.log('Logged out!');
+    });
+  };
+};
+
+
+export const setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
     searchText
   };
 };
 
-export var toggleShowCompleted = () => {
+export const toggleShowCompleted = () => {
   return {
     type: 'TOGGLE_SHOW_COMPLETED'
   };
 };
 
-export var addTodo = (todo) => {
+export const addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
     todo
   };
 };
 
-export var startAddTodo = (text) => {
+export const startAddTodo = (text) => {
   return (dispatch, getState) => {
     var todo = {
       text,
@@ -42,14 +102,14 @@ export var startAddTodo = (text) => {
   };
 };
 
-export var addTodos = (todos) => {
+export const addTodos = (todos) => {
   return {
     type: 'ADD_TODOS',
     todos
   };
 };
 
-export var startAddTodos = () => {
+export const startAddTodos = () => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid;
     var todosRef = firebaseRef.child(`users/${uid}/todos`);
@@ -70,7 +130,7 @@ export var startAddTodos = () => {
   };
 };
 
-export var updateTodo = (id, updates) => {
+export const updateTodo = (id, updates) => {
   return {
     type: 'UPDATE_TODO',
     id,
@@ -78,7 +138,7 @@ export var updateTodo = (id, updates) => {
   };
 };
 
-export var startToggleTodo = (id, completed) => {
+export const startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
     var uid = getState().auth.uid;
     var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
@@ -93,33 +153,3 @@ export var startToggleTodo = (id, completed) => {
   };
 };
 
-export var login = (uid) => {
-  return {
-    type: 'LOGIN',
-    uid
-  };
-};
-
-export var startLogin = () => {
-  return (dispatch, getState) => {
-    return firebase.auth().signInWithPopup(githubProvider).then((result) => {
-      console.log('Auth worked!', result);
-    }, (error) => {
-      console.log('Unable to auth', error);
-    });
-  };
-};
-
-export var logout = () => {
-  return {
-    type: 'LOGOUT'
-  };
-};
-
-export var startLogout = () => {
-  return (dispatch, getState) => {
-    return firebase.auth().signOut().then(() => {
-      console.log('Logged out!');
-    });
-  };
-};

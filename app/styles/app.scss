@@ -1,13 +1,10 @@
 @import "base/variables";
 
-// foundation
-@import "base/foundation-settings";
-@import "foundation";
-@include foundation-everything;
+// Bootstrap v4
+@import "base/bootstrap";
+
+// Base styling
+@import "base/app";
 
 // Components
-@import "components/callout-auth";
-@import "components/container";
-@import "components/page-actions";
-@import "components/page-title";
-@import "components/todo";
+@import "components/Login";

@@ -1,5 +1,29 @@
-var uuid = require('node-uuid');
-var moment = require('moment');
+
+
+export let authReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOGIN_REQUEST':
+      return state;
+    default:
+      return state;
+  }
+};
+
+export let loaderReducer = (state = false, action) => {};
+
+export let userReducer = (state = {}, action) => {
+
+  switch (action.type) {
+    case 'LOAD_USER':
+      console.log('userReducer', action.user);
+      return {
+        ...action.user
+      };
+    default:
+      return state;
+  }
+};
+
 
 export var searchTextReducer = (state = '', action) => {
   switch (action.type) {
@@ -7,7 +31,7 @@ export var searchTextReducer = (state = '', action) => {
       return action.searchText;
     default:
       return state;
-  };
+  }
 };
 
 export var showCompletedReducer = (state = false, action) => {
@@ -24,14 +48,23 @@ export var todosReducer = (state = [], action) => {
     case 'ADD_TODO':
       return [
         ...state,
-        action.todo
+        {
+          id: uuid(),
+          text: action.text,
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: undefined
+        }
       ];
-    case 'UPDATE_TODO':
+    case 'TOGGLE_TODO':
       return state.map((todo) => {
         if (todo.id === action.id) {
+          var nextCompleted = !todo.completed;
+
           return {
             ...todo,
-            ...action.updates
+            completed: nextCompleted,
+            completedAt: nextCompleted ? moment().unix() : undefined
           };
         } else {
           return todo;
@@ -42,21 +75,6 @@ export var todosReducer = (state = [], action) => {
         ...state,
         ...action.todos
       ];
-    case 'LOGOUT':
-      return [];
-    default:
-      return state;
-  }
-};
-
-export var authReducer = (state = {}, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return {
-        uid: action.uid
-      };
-    case 'LOGOUT':
-      return {};
     default:
       return state;
   }

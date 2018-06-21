@@ -1,38 +1,27 @@
-var React = require('react');
-var {connect} = require('react-redux');
-var moment = require('moment');
-var actions = require('actions');
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export var Todo = React.createClass({
-  render: function () {
-    var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
-    var todoClassName = completed ? 'todo todo-completed' : 'todo';
-    var renderDate = () => {
-      var message = 'Created ';
-      var timestamp = createdAt;
+import Filters from './Filters'
+import AddTodo from './AddTodo'
+import TodoList from './TodoList'
 
-      if (completed) {
-        message = 'Completed ';
-        timestamp = completedAt;
-      }
+class TodoApp extends Component {
 
-      return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
-    };
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
     return (
-      <div className={todoClassName} onClick={() => {
-          dispatch(actions.startToggleTodo(id, !completed));
-        }}>
-        <div>
-          <input type="checkbox" checked={completed}/>
-        </div>
-        <div>
-          <p>{text}</p>
-          <p className="todo__subtext">{renderDate()}</p>
-        </div>
-      </div>
+      <React.Fragment>
+        <h1>My Todo List</h1>
+        <Filters/>
+        <AddTodo/>
+        <TodoList/>
+      </React.Fragment>
     )
   }
-});
 
-export default connect()(Todo);
+}
+
+export default connect()(TodoApp);

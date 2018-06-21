@@ -1,30 +1,17 @@
 import React from 'react';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import TodoApp from 'TodoApp';
-import Login from 'Login';
-import firebase from 'app/firebase/';
+import Login from '../components/Login'
+import Register from '../components/Register'
+import ForgotPassword from '../components/ForgotPassword'
 
-var requireLogin = (nextState, replace, next) => {
-  if (!firebase.auth().currentUser) {
-    replace('/');
-  }
-  next();
-};
-
-var redirectIfLoggedIn = (nextState, replace, next) => {
-  if (firebase.auth().currentUser) {
-    replace('/todos');
-  }
-
-  next();
-};
 
 export default (
-  <Router history={hashHistory}>
-    <Route path="/">
-      <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
-      <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
-    </Route>
+  <Router>
+    <Switch>
+      <Route path="/login" component={Login}/>
+      <Route path="/forgotpassword" component={ForgotPassword}/>
+      <Route path="/" component={Register}/>
+    </Switch>
   </Router>
 );
