@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 
 import * as api from 'api'
 
@@ -12,6 +12,8 @@ class Register extends Component {
     super(props);
 
     this.state = {
+      error: false,
+      redirect: false,
       name: '',
       email: '',
       password: ''
@@ -33,19 +35,23 @@ class Register extends Component {
   handleRegisterFormSubmit(e) {
     e.preventDefault();
 
-    let { dispatch } = this.props;
-
+    let { dispatch, history } = this.props;
     let userData = this.state;
 
     console.log(JSON.stringify(userData));
 
     api.registerUser(userData).then(response => {
       console.log(response);
-      dispatch(loginSuccess(response));
+      // show success message and
+      // redirect to login
+      // history.push('/login');
+
+      this.setState({ redirect: true });
+
     }).catch(err => {
       console.log(err);
+      this.setState({ error: true });
     });
-
 
     this.refs.name.value = '';
     this.refs.email.value = '';
@@ -57,6 +63,21 @@ class Register extends Component {
 
   render() {
 
+    let errorMessage;
+    let { error, redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/login'/>;
+    }
+
+    if (error) {
+      errorMessage = <div className="card fat error">
+        <div className="card-body">
+          <p>There was an error!</p>
+        </div>
+      </div>
+    }
+
     return (
       <section className="h-100">
         <div className="container h-100">
@@ -65,6 +86,9 @@ class Register extends Component {
               <div className="brand">
                 <img src={require('../images/reactjsicon.png')} width="90" height="90"/>
               </div>
+
+              {errorMessage}
+
               <div className="card fat">
                 <div className="card-body">
                   <h4 className="card-title">Register</h4>
@@ -76,7 +100,7 @@ class Register extends Component {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="email">E-Mail Address</label>
+                      <label htmlFor="email">E-Mail</label>
                       <input id="email" ref="email" type="email" className="form-control" name="email" onChange={this.handleFormFieldChange} required/>
                     </div>
 

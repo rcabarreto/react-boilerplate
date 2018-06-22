@@ -2,10 +2,22 @@ import axios from 'axios'
 
 module.exports = {
 
+  loginUser: function (userData) {
+    return new Promise((resolve, reject) => {
+
+      axios.post('/user/login', userData).then(response => {
+        resolve(response.data);
+      }).catch(error => {
+        reject(error);
+      });
+
+    });
+  },
+
   registerUser: function (registerForm) {
     return new Promise((resolve, reject) => {
 
-      axios.post('/user', registerForm).then(response => {
+      axios.post('/api/user/register', registerForm).then(response => {
         resolve(response.data);
       }).catch(error => {
         reject(error);

@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const _ = require('underscore');
+
 const router = express.Router();
 
 
@@ -8,17 +10,13 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
 
-  let user = {
-    name: 'Rodrigo Barreto',
-    email: 'rcabarreto@gmail.com',
-    token: 'kljfsldkfwo3yur298ybv89'
-  };
-
-  res.status(200).json(user);
-
+router.post('/register', (req, res) => {
+  let user = _.pick(req.body, 'name','email','password');
+  console.log(JSON.stringify(user));
+  res.status(500).json(user);
 });
+
 
 
 router.put('/', (req, res) => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import {loginSuccess} from "actions";
+import * as api from "api";
 
 
 class Login extends Component {
@@ -26,7 +28,23 @@ class Login extends Component {
 
   handleLoginFormSubmit(e) {
     e.preventDefault();
-    console.log('Make login call with user data. Email:', this.refs.email.value, 'Password:', this.refs.password.value);
+
+    let { dispatch } = this.props;
+    let userData = this.state;
+
+    console.log(JSON.stringify(userData));
+
+    api.loginUser(userData).then(response => {
+      dispatch(loginSuccess(response));
+    }).catch(err => {
+      console.log(err);
+    });
+
+    this.refs.email.value = '';
+    this.refs.password.value = '';
+
+    console.log('enviando formulario...');
+
   }
 
   render() {
@@ -46,14 +64,14 @@ class Login extends Component {
 
                     <div className="form-group">
                       <label htmlFor="email">E-Mail Address</label>
-                      <input id="email" ref="email" type="email" className="form-control" name="email" onChange={this.handleChange} required autoFocus/>
+                      <input id="email" ref="email" type="email" className="form-control" name="email" onChange={this.handleFormFieldChange} required autoFocus/>
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="password">Password
                         <NavLink to="/forgotpassword" className="float-right">Forgot Password?</NavLink>
                       </label>
-                      <input id="password" ref="password" type="password" className="form-control" name="password" onChange={this.handleChange} required data-eye/>
+                      <input id="password" ref="password" type="password" className="form-control" name="password" onChange={this.handleFormFieldChange} required data-eye/>
                     </div>
 
                     <div className="form-group">
@@ -68,7 +86,7 @@ class Login extends Component {
                       </button>
                     </div>
                     <div className="margin-top20 text-center">
-                      Don't have an account? <NavLink to="/">Create One</NavLink>
+                      Don't have an account? <NavLink to="/register">Create One</NavLink>
                     </div>
                   </form>
                 </div>
