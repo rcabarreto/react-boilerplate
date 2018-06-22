@@ -3,7 +3,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const userRoute = require('./routes/user')();
+const indexRoute = require('./routes/index');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 
@@ -12,8 +13,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/api', apiRoutes);
 
-app.use('/user', userRoute);
+// loads index.html for any route that didn't match!
+app.use('/', indexRoute);
+
 
 module.exports = app;

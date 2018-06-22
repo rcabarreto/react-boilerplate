@@ -25,11 +25,6 @@ const config = {
     path: path.resolve('./public'),
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './app/template/index.html',
-      title: 'boilerplateApp'
-    }),
-    new CleanWebpackPlugin(['public']),
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
@@ -90,7 +85,9 @@ const config = {
           loader: 'file-loader',
           options: {
             name: '[hash].[ext]',
-            outputPath: 'images/'
+            outputPath: 'images/',
+            publicPath: 'http://localhost:3000/public/images/',
+            useRelativePath: false
           }
         },{
           loader: 'image-webpack-loader',

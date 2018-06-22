@@ -31,8 +31,6 @@ class Login extends Component {
 
   render() {
 
-    let { email, password } = this.state;
-
     return (
       <section className="h-100">
         <div className="container h-100">
@@ -47,12 +45,12 @@ class Login extends Component {
                   <form method="POST" onSubmit={this.handleLoginFormSubmit}>
 
                     <div className="form-group">
-                      <label htmlFor="email">E-Mail Address ({email})</label>
+                      <label htmlFor="email">E-Mail Address</label>
                       <input id="email" ref="email" type="email" className="form-control" name="email" onChange={this.handleChange} required autoFocus/>
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="password">Password ({password})
+                      <label htmlFor="password">Password
                         <NavLink to="/forgotpassword" className="float-right">Forgot Password?</NavLink>
                       </label>
                       <input id="password" ref="password" type="password" className="form-control" name="password" onChange={this.handleChange} required data-eye/>
