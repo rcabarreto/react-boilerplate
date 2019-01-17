@@ -22,15 +22,14 @@ const config = {
     new Dotenv(),
     new HtmlWebPackPlugin({
       template: './src/template/index.html',
-      title: 'OE Middleware Dashboard',
-      favicon: 'src/images/favicon.png',
+      title: 'React Boilerplate',
+      favicon: './src/images/reactjsicon.png',
     }),
     new CleanWebpackPlugin(['public']),
   ],
   resolve: {
     modules: [
       'node_modules',
-      './src/components',
       './src',
     ],
     alias: aliases,

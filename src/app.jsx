@@ -1,19 +1,19 @@
+/* global document */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import router from 'router';
+// import router from 'router';
 
-import * as configureStore from 'configureStore'
+// import * as configureStore from 'configureStore'
+// const store = configureStore.configure();
 
-const store = configureStore.configure();
-
-// App css
+// App Styles
 import 'applicationStyles'
 
+import App from 'components/App'
+
 ReactDOM.render(
-  <Provider store={store}>
-    {router}
-  </Provider>,
-  document.getElementById('myApp')
-);
+  <App />,
+  document.getElementById('app'),
+)
