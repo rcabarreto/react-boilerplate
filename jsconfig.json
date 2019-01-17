@@ -6,12 +6,13 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "applicationStyles": ["src/styles/app.scss"],
+      "styles/*": ["src/styles/*"],
       "actions/*": ["src/actions/*"],
       "constants/*": ["src/constants/*"],
       "reducers/*": ["src/reducers/*"],
       "services/*": ["src/services/*"],
-      "components/*": ["src/components/*"]
+      "components/*": ["src/components/*"],
+      "store/*": ["src/store/*"]
     }
   },
   "exclude": ["node_modules", "dist"],

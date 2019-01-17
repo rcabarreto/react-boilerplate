@@ -1,16 +1,16 @@
-import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
-import { loaderReducer, userReducer } from 'reducers'
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { loaderReducer } from 'reducers'
 
-export var configure = (initialState = {}) => {
-
-  let reducer = combineReducers({
+export default (initialState = {}) => {
+  const reducer = combineReducers({
     loader: loaderReducer,
-    user: userReducer
-  });
+  })
 
-  let store = createStore(reducer, initialState, compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  ));
+  const store = createStore(reducer, initialState, compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
+  ))
 
-  return store;
-};
+  return store
+}
