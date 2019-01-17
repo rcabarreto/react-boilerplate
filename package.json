@@ -4,14 +4,24 @@
   "description": "My very own react boilerplate project",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "dev": "webpack-dev-server --open --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rcabarreto/react-boilerplate.git"
   },
-  "author": "Rodrigo Barreto",
+  "keywords": [
+    "react",
+    "redux",
+    "webpack",
+    "jest",
+    "starter",
+    "boilerplate"
+  ],
+  "author": "Rodrigo Barreto <rcabarreto@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rcabarreto/react-boilerplate/issues"
