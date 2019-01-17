@@ -20,11 +20,17 @@
   },
   "jest": {
     "testURL": "http://localhost/",
+    "moduleNameMapper": {
+      "components(.*)$": "<rootDir>/src/components/$1",
+      "constants/index": "<rootDir>/src/constants/",
+      "services": "<rootDir>/src/services/",
+      "actions": "<rootDir>/src/actions/"
+    },
     "setupFiles": [
       "<rootDir>/config/tests/jest.config"
     ],
     "transform": {
-      "^.+\\.js$": "babel-jest"
+      "^.+\\.jsx$": "babel-jest"
     }
   },
   "repository": {
