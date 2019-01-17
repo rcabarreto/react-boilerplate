@@ -10,7 +10,6 @@ const store = configureStore.configure();
 
 // App css
 import 'applicationStyles'
-import './scripts/password-show'
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,0 +1,39 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack.dev.js"
+            }
+        }
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "never"
+        ],
+        "react/jsx-one-expression-per-line": ["off"],
+        "jsx-a11y/label-has-for": ["error", {
+            "components": [],
+            "required": {
+              "every": ["id"]
+            },
+            "allowChildren": false
+        }],
+        "jsx-a11y/label-has-associated-control": ["off"],
+        "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }]
+    }
+}
